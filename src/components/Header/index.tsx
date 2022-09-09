@@ -1,4 +1,5 @@
 import style from './Header.module.scss'
+import {motion} from 'framer-motion'
 
 export const Header = () => {
     return (
@@ -15,9 +16,16 @@ export const Header = () => {
             />
           </svg>
         </div>
-        <div className={`${style.title}`}>
+        <motion.div className={`${style.title}`}
+          initial={{
+            y: -250
+          }}
+          animate={{
+            y: -10
+          }}
+        >
           <h1>Pizza Joint</h1>
-        </div>
+        </motion.div>
       </header>
     )
   }
