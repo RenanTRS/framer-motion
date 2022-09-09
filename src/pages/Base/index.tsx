@@ -9,14 +9,40 @@ interface BaseProps {
     }
 }
 
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+    x: '100vw'
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: 'spring',
+      delay: 0.5
+    }
+  }
+}
+
+const nextVariants = {
+  hidden: {
+    x: '-100vw'
+  },
+  visible: {
+    x: 0,
+    transition: {type: 'spring', stiffness: 120}
+  }
+}
+
 export const Base = ({ addBase, pizza }: BaseProps) => {
   const bases = ['Classic', 'Thin & Crispy', 'Thick Crust'];
 
   return (
     <motion.div className="base container"
-      initial={{x: '100vw'}}
-      animate={{x: 0}}
-      transition={{type: 'spring', delay: 0.5}}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      
     >
 
       <h3>Step 1: Choose Your Base</h3>
@@ -36,13 +62,9 @@ export const Base = ({ addBase, pizza }: BaseProps) => {
 
       {pizza.base && (
         <motion.div className="next"
-          initial={{
-            x: '-100vw'
-          }}
-          animate={{
-            x: 0
-          }}
-          transition={{type:'spring', stiffness: 120}}
+          variants={nextVariants}
+          initial="hidden"
+          animate="visible"
         >
           <Link to="/toppings">
             <motion.button
