@@ -11,6 +11,7 @@ export const Home = () => {
       animate={{
         opacity: 1,
       }}
+      transition={{delay: 1.5, duration: 1.5}}
     >
       <motion.h2
         animate={{
