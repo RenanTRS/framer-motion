@@ -2,6 +2,14 @@ import { Link } from 'react-router-dom';
 import style from './Home.module.scss'
 import {motion} from 'framer-motion'
 
+const buttonVariants = {
+  hover: {
+    scale: [1,1.1,1,1.1,1,1.1,1],
+    textShadow: "0px 0px 8px rgb(255, 255, 255)",
+    boxShadow: "0px 0px 8px rgb(255, 255, 255)"
+  }
+}
+
 export const Home = () => {
   return (
     <motion.div className={`${style.home} container`}
@@ -22,11 +30,8 @@ export const Home = () => {
       </motion.h2>
       <Link to="/base">
         <motion.button
-          whileHover={{
-            scale: 1.1,
-            textShadow: "0px 0px 8px rgb(255, 255, 255)",
-            boxShadow: "0px 0px 8px rgb(255, 255, 255)"
-          }}
+          variants={buttonVariants}
+          whileHover="hover"
         >
           Create Your Pizza
         </motion.button>
