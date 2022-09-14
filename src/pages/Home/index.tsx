@@ -15,16 +15,27 @@ const buttonVariants = {
   }
 }
 
+const containerVariants = {
+  hidden: {
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    transition: {delay: 1.5, duration: 1.5}
+  },
+  exit: {
+    x: '-100vw',
+    transition: {ease: 'easeInOut'}
+  }
+}
+
 export const Home = () => {
   return (
     <motion.div className={`${style.home} container`}
-      initial={{
-        opacity: 0
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      transition={{delay: 1.5, duration: 1.5}}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
     >
       <motion.h2
         animate={{

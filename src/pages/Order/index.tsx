@@ -37,11 +37,11 @@ const childVariants = {
 }
 
 export const Order = ({ pizza }: OrderProps) => {
-    const [showTitle, setShowTitle] = useState<boolean>(true)
+    /* const [showTitle, setShowTitle] = useState<boolean>(true)
 
     setTimeout(()=>{
       setShowTitle(false)
-    },4000)
+    },4000) */
 
     return (
       <motion.div className={`${style.order} container`}
@@ -49,7 +49,7 @@ export const Order = ({ pizza }: OrderProps) => {
         initial="hidden"
         animate="visible"
       >
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {
             showTitle && (
               <motion.h2
@@ -64,8 +64,9 @@ export const Order = ({ pizza }: OrderProps) => {
                 Thank you for your order :)
               </motion.h2>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
 
+        <h2>Thank you for your order:)</h2>
         <motion.p
           variants={childVariants}
         >
