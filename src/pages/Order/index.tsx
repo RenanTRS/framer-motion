@@ -1,5 +1,6 @@
+import {useState} from 'react'
 import style from './Order.module.scss'
-import {motion} from 'framer-motion'
+import {motion, AnimatePresence} from 'framer-motion'
 
 interface OrderProps {
     pizza: {
@@ -36,13 +37,35 @@ const childVariants = {
 }
 
 export const Order = ({ pizza }: OrderProps) => {
+    const [showTitle, setShowTitle] = useState<boolean>(true)
+
+    setTimeout(()=>{
+      setShowTitle(false)
+    },4000)
+
     return (
       <motion.div className={`${style.order} container`}
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <h2>Thank you for your order :)</h2>
+        <AnimatePresence>
+          {
+            showTitle && (
+              <motion.h2
+                exit={{ //saída para caso o elemento seja retirado da tela, precisa estar dentro do componente AnimatePresence
+                  y: -100,
+                  opacity: 0,
+                  transition: {
+                    duration: 0.8
+                  }
+                }}
+              >
+                Thank you for your order :)
+              </motion.h2>
+          )}
+        </AnimatePresence>
+
         <motion.p
           variants={childVariants}
         >
