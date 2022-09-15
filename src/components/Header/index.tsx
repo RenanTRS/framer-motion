@@ -1,5 +1,6 @@
 import style from './Header.module.scss'
 import {motion} from 'framer-motion'
+import { useRef } from 'react'
 
 const svgVariants = {
   hidden: {rotate: -180},
@@ -27,7 +28,11 @@ const pathVariants = {
 export const Header = () => {
     return (
       <header>
-        <div className="logo">
+        <motion.div className="logo"
+          drag
+          dragConstraints={{left: 0, top: 0, right: 0, bottom: 0}}
+          dragElastic={1}
+        >
           <motion.svg className={`${style.pizzasvg}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
           variants={svgVariants}
           initial="hidden"
@@ -44,7 +49,7 @@ export const Header = () => {
               variants={pathVariants}
             />
           </motion.svg>
-        </div>
+        </motion.div>
         <motion.div className={`${style.title}`}
           initial={{
             y: -250
