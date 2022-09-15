@@ -1,4 +1,4 @@
-import {motion} from 'framer-motion'
+import {motion, useCycle} from 'framer-motion'
 import style from './Loader.module.scss'
 
 const loaderVariants = {
@@ -16,18 +16,35 @@ const loaderVariants = {
                 ease: 'easeOut'
             }
         }
+    },
+    animationTwo: {
+        x: 0,
+        y: [0, -40],
+        transition: {
+            y: {
+                yoyo: Infinity,
+                duration: 0.25,
+                ease: 'easeOut'
+            }
+        }
     }
 }
 
 export const Loader = () => {
+
+    const [animation, cycleAnimation] = useCycle('animationOne', 'animationTwo') //Espécie de state toggle
     return (
         <>
             <motion.div className={style.loader}
                 variants={loaderVariants}
-                animate="animationOne"
+                animate={animation}
             >
-
             </motion.div>
+            <div
+                onClick={()=>cycleAnimation()}
+            >
+                Cycle Loader
+            </div>
         </>
     )
 }
