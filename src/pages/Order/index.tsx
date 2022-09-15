@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import style from './Order.module.scss'
 import {motion, AnimatePresence} from 'framer-motion'
 
@@ -7,6 +7,7 @@ interface OrderProps {
         base: string
         toppings: string[]
     }
+    setShowModal:(value: boolean) => void
 }
 
 const containerVariants = {
@@ -36,12 +37,18 @@ const childVariants = {
   }
 }
 
-export const Order = ({ pizza }: OrderProps) => {
+export const Order = ({ pizza, setShowModal }: OrderProps) => {
     /* const [showTitle, setShowTitle] = useState<boolean>(true)
 
     setTimeout(()=>{
       setShowTitle(false)
     },4000) */
+
+    useEffect(() => {
+      setTimeout(() => {
+        setShowModal(true)
+      }, 5000)
+    },[])
 
     return (
       <motion.div className={`${style.order} container`}
